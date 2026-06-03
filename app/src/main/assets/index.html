@@ -27,12 +27,41 @@ button{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background
 .progress{height:22px;background:#d8ecef;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--leaf));width:0%;transition:.3s}.medals{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.medal{border-radius:20px;padding:16px;background:#eef4f5;border:1px solid var(--line);opacity:.55}.medal.unlocked{background:#fff7d1;border-color:#fbbf24;opacity:1;box-shadow:0 0 0 3px rgba(251,191,36,.18)}.medal .emo{font-size:36px}
 .footer{text-align:center;color:#607D86;padding:30px}@media(max-width:650px){h1{font-size:36px}header{min-height:74vh}.wrap{padding:12px}}
 @media print{nav,.toolbar button{display:none}body{background:white}.card{box-shadow:none;break-inside:avoid}header{min-height:auto;color:white;padding:24px;break-after:page}}
+
+/* Selector d'usuària */
+#userSelect{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0097A7,#6A4C93);display:flex;align-items:center;justify-content:center;padding:24px;color:white}
+#userSelect.hidden{display:none}
+.userBox{width:min(520px,100%);background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.38);border-radius:30px;padding:26px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.22);backdrop-filter:blur(8px)}
+.userBox h1{font-size:34px;line-height:1.05;margin:8px 0 10px}
+.userButtons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.userBtn{border:0;border-radius:24px;background:white;color:var(--deep);padding:22px 12px;font-size:22px;font-weight:950;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.userBtn span{display:block;font-size:42px;margin-bottom:6px}
+.currentUserPill{position:fixed;right:10px;bottom:10px;z-index:20;background:var(--deep);color:white;border-radius:999px;padding:8px 12px;font-weight:900;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.currentUserPill button{margin-left:8px;background:white;color:var(--deep);padding:6px 10px;font-size:12px}
+@media(max-width:520px){.userButtons{grid-template-columns:1fr}.userBox h1{font-size:30px}}
+
 </style>
 <script>
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
 </script>
 </head>
 <body>
+<div id="userSelect">
+  <div class="userBox">
+    <div style="font-size:54px">🌴📘</div>
+    <h1>Qui comença l'aventura?</h1>
+    <p>Escull el passaport. Cada usuària tindrà els seus reptes, records i medalles guardats per separat.</p>
+    <div class="userButtons">
+      <button class="userBtn" onclick="chooseUser('Laia')"><span>🌺</span>Laia</button>
+      <button class="userBtn" onclick="chooseUser('Gina')"><span>🐢</span>Gina</button>
+    </div>
+  </div>
+</div>
+<div class="currentUserPill" id="currentUserPill" style="display:none">
+  <span id="currentUserName"></span>
+  <button onclick="switchUser()">Canviar</button>
+</div>
+
 <header><div><div class="badges"><span class="badge">Família Font 2026</span><span class="badge">Malàisia · Singapur · Bali · Gili Air</span><span class="badge">Diari interactiu</span></div>
 <h1>🌴 Passaport<br>de les Aventureres</h1><p>Un quadern interactiu per marcar reptes, escriure records, posar estrelles, desbloquejar medalles i guardar l'aventura des del mòbil.</p></div>
 <div class="card" style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35);color:white"><label><b>Nom de l’aventurera</b></label><input data-save="nom" type="text" placeholder="Escriu el teu nom"><p><b>23 juliol - 13 agost 2026</b></p></div></header>
@@ -111,24 +140,45 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => naviga
 <label>El meu record:</label><textarea data-save="day_20_record"></textarea>
 <label>El millor menjar / moment / foto:</label><input data-save="day_20_best" type="text">
 <p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_20_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div></section><section id="final"><h2>🏁 Rànquing final del viatge</h2><div class="card"><table class="table"><tr><th>Categoria</th><th>Guanyador</th><th>Per què</th></tr><tr><td><b>Millor platja</b></td><td><input data-save='rank_0_win' type='text'></td><td><input data-save='rank_0_why' type='text'></td></tr><tr><td><b>Millor animal</b></td><td><input data-save='rank_1_win' type='text'></td><td><input data-save='rank_1_why' type='text'></td></tr><tr><td><b>Millor menjar</b></td><td><input data-save='rank_2_win' type='text'></td><td><input data-save='rank_2_why' type='text'></td></tr><tr><td><b>Millor hotel</b></td><td><input data-save='rank_3_win' type='text'></td><td><input data-save='rank_3_why' type='text'></td></tr><tr><td><b>Millor ciutat</b></td><td><input data-save='rank_4_win' type='text'></td><td><input data-save='rank_4_why' type='text'></td></tr><tr><td><b>Moment més divertit</b></td><td><input data-save='rank_5_win' type='text'></td><td><input data-save='rank_5_why' type='text'></td></tr><tr><td><b>Moment més WOW</b></td><td><input data-save='rank_6_win' type='text'></td><td><input data-save='rank_6_why' type='text'></td></tr></table></div><div class="card"><h3>💌 Carta al meu jo del futur</h3><textarea data-save="carta" placeholder="Estimada jo del futur..."></textarea></div>
-<div class="toolbar"><button onclick="window.print()">Imprimir / guardar en PDF</button><button class="light" onclick="exportData()">Exportar records</button><button class="secondary" onclick="if(confirm('Segur que vols esborrar tot el que has escrit?')){localStorage.clear();location.reload()}">Esborrar tot</button></div>
+<div class="toolbar"><button onclick="window.print()">Imprimir / guardar en PDF</button><button class="light" onclick="exportData()">Exportar records</button><button class="secondary" onclick="if(confirm('Segur que vols esborrar només les dades de '+currentUser+'?')){clearCurrentUserData();location.reload()}">Esborrar tot</button></div>
 <p class="small">El que escriguis queda guardat en aquest navegador del mòbil. Si canvies de mòbil o navegador, exporta els records abans.</p></section></main>
 <div class="footer">Passaport de les Aventureres · Família Font 2026</div>
 <script>
+let currentUser = localStorage.getItem('passaport_current_user') || '';
+function storageKey(key){ return currentUser ? ('passaport_'+currentUser+'_'+key) : key; }
+function chooseUser(name){
+  currentUser = name;
+  localStorage.setItem('passaport_current_user', name);
+  document.getElementById('userSelect').classList.add('hidden');
+  document.getElementById('currentUserPill').style.display='block';
+  document.getElementById('currentUserName').textContent='Passaport: '+name;
+  document.querySelectorAll('[data-save]').forEach(loadEl);
+  document.querySelectorAll('[data-starbox]').forEach(box=>{const saved=Number(localStorage.getItem(storageKey(box.dataset.starbox))||0);setStars(box,saved);});
+  updateProgress();
+}
+function switchUser(){
+  document.getElementById('userSelect').classList.remove('hidden');
+}
+function clearCurrentUserData(){
+  const prefix='passaport_'+currentUser+'_';
+  Object.keys(localStorage).filter(k=>k.startsWith(prefix)).forEach(k=>localStorage.removeItem(k));
+}
+window.addEventListener('load',()=>{ if(currentUser) chooseUser(currentUser); });
+
 const medals = [["med_tortuga", "🐢", "Medalla Tortuga", "Completa una tortuga de Perhentian o Gili", ["chk_tortuga_perhentian", "chk_tortuga_gili"]], ["med_fotografa", "📸", "Fotògrafa Oficial", "Completa 4 reptes de fotos familiars", ["chk_foto_petronas", "chk_foto_batu", "chk_foto_supertrees", "chk_foto_cascada", "chk_foto_gili", "chk_foto_pais"], 4], ["med_singapur", "✨", "Exploradora de Singapur", "Troba el Merlion i entra al MRT com experta", ["chk_merlion", "chk_mrt_expertes"]], ["med_gili", "🚲", "Exploradora de Gili", "Volta en bici + tortuga a Gili", ["chk_gili_bici", "chk_tortuga_gili"]], ["med_foodie", "🍜", "Foodie Aventurera", "Completa 4 reptes de sabors", ["chk_menjar_malaisia", "chk_hawker", "chk_warung", "chk_suc", "chk_sopar", "chk_fruita"], 4], ["med_super", "🏆", "Super Aventurera Font", "Completa almenys el 80% dels reptes", ["__progress80__"]]];
-function saveEl(el){const key=el.dataset.save;if(!key)return;if(el.type==='checkbox')localStorage.setItem(key,el.checked?'1':'0');else localStorage.setItem(key,el.value);updateProgress();}
-function loadEl(el){const key=el.dataset.save;if(!key)return;const val=localStorage.getItem(key);if(val===null)return;if(el.type==='checkbox')el.checked=val==='1';else el.value=val;}
+function saveEl(el){const key=el.dataset.save;if(!key)return;if(el.type==='checkbox')localStorage.setItem(storageKey(key),el.checked?'1':'0');else localStorage.setItem(storageKey(key),el.value);updateProgress();}
+function loadEl(el){const key=el.dataset.save;if(!key)return;const val=localStorage.getItem(storageKey(key));if(val===null)return;if(el.type==='checkbox')el.checked=val==='1';else el.value=val;}
 document.querySelectorAll('[data-save]').forEach(el=>{loadEl(el);el.addEventListener('input',()=>saveEl(el));el.addEventListener('change',()=>saveEl(el));});
 function setStars(box,n){box.querySelectorAll('.star').forEach(s=>s.classList.toggle('active',Number(s.dataset.v)<=n));}
-document.querySelectorAll('[data-starbox]').forEach(box=>{const key=box.dataset.starbox;const saved=Number(localStorage.getItem(key)||0);setStars(box,saved);box.querySelectorAll('.star').forEach(star=>{star.addEventListener('click',()=>{const v=Number(star.dataset.v);localStorage.setItem(key,v);setStars(box,v);});});});
+document.querySelectorAll('[data-starbox]').forEach(box=>{const key=box.dataset.starbox;const saved=Number(localStorage.getItem(storageKey(key))||0);setStars(box,saved);box.querySelectorAll('.star').forEach(star=>{star.addEventListener('click',()=>{const v=Number(star.dataset.v);localStorage.setItem(storageKey(key),v);setStars(box,v);});});});
 function updateProgress(){
  const challenges=[...document.querySelectorAll('.challenge')]; const done=challenges.filter(x=>x.checked).length; const pct=challenges.length?Math.round(done/challenges.length*100):0;
  document.getElementById('progressText').textContent=pct+'% ('+done+'/'+challenges.length+')'; document.getElementById('progressBar').style.width=pct+'%';
  medals.forEach(m=>{const id=m[0], req=m[4], min=m[5]||req.length; let ok=false;
-   if(req.includes('__progress80__')) ok=pct>=80; else ok=req.filter(k=>localStorage.getItem(k)==='1').length>=min;
+   if(req.includes('__progress80__')) ok=pct>=80; else ok=req.filter(k=>localStorage.getItem(storageKey(k))==='1').length>=min;
    const el=document.getElementById(id); if(el) el.classList.toggle('unlocked',ok);
  });
 }
-function exportData(){let data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);data[k]=localStorage.getItem(k);}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='records_passaport_aventureres_font_2026.json';a.click();URL.revokeObjectURL(url);}
+function exportData(){let data={usuaria:currentUser};const prefix='passaport_'+currentUser+'_';for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith(prefix)){data[k.replace(prefix,'')]=localStorage.getItem(k);}}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='records_passaport_'+currentUser+'_2026.json';a.click();URL.revokeObjectURL(url);}
 updateProgress();
 </script></body></html>
