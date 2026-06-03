@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Passaport de les Aventureres Font 2026</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0097A7">
+<style>
+:root{--teal:#0097A7;--coral:#FF6F61;--pink:#EF476F;--sun:#FFD166;--leaf:#2E8B57;--blue:#247BA0;--purple:#6A4C93;--deep:#163B45;--cream:#FFF8EA;--sand:#FFF0C2;--line:#D5E4E6}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f4fbfb;color:var(--deep)}
+header{min-height:86vh;background:linear-gradient(135deg,rgba(0,151,167,.94),rgba(106,76,147,.88));color:white;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+header:before{content:"🐢";position:absolute;font-size:120px;right:-10px;bottom:30px;opacity:.12}header:after{content:"🌴";position:absolute;font-size:110px;right:18px;top:80px;opacity:.12}
+h1{font-size:44px;line-height:.95;margin:12px 0;font-weight:950;letter-spacing:-1.5px}h2{font-size:26px;margin:26px 0 12px}h3{margin:0 0 10px;font-size:20px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 12px;font-weight:800}
+nav{position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);z-index:10;display:flex;gap:8px;overflow:auto;padding:10px;border-bottom:1px solid var(--line)}
+nav a{white-space:nowrap;background:#e6fbfb;color:var(--deep);text-decoration:none;font-weight:850;border-radius:999px;padding:8px 12px}
+.wrap{max-width:980px;margin:auto;padding:16px}.card{background:white;border:1px solid var(--line);border-radius:24px;padding:18px;margin:14px 0;box-shadow:0 12px 30px rgba(22,59,69,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+input[type=text],textarea{width:100%;border:2px solid var(--line);border-radius:16px;padding:12px;font-size:16px;background:#fbffff;color:var(--deep);margin:6px 0 14px}textarea{min-height:110px;resize:vertical}
+.check{display:flex;align-items:flex-start;gap:10px;margin:10px 0;line-height:1.35}.check input{width:24px;height:24px;accent-color:var(--pink);flex:0 0 24px}
+.stamps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}.stamp{background:#fff7ed;border:2px dashed #fb923c;border-radius:22px;text-align:center;padding:16px;min-height:120px}.stamp .emoji{font-size:34px}
+.starbox{display:flex;gap:4px;font-size:30px;user-select:none}.star{cursor:pointer;color:#ccd5d8}.star.active{color:var(--sun)}
+.day{border-left:8px solid var(--teal)}.small{font-size:13px;color:#607D86}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+button{border:0;border-radius:999px;padding:10px 14px;font-weight:900;background:var(--deep);color:white;font-size:15px}button.secondary{background:var(--coral)}button.light{background:#e6fbfb;color:var(--deep)}
+.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:16px;background:white}.table th{background:var(--teal);color:white;text-align:left}.table th,.table td{padding:10px;border:1px solid var(--line)}
+.progress{height:22px;background:#d8ecef;border-radius:999px;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--leaf));width:0%;transition:.3s}.medals{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.medal{border-radius:20px;padding:16px;background:#eef4f5;border:1px solid var(--line);opacity:.55}.medal.unlocked{background:#fff7d1;border-color:#fbbf24;opacity:1;box-shadow:0 0 0 3px rgba(251,191,36,.18)}.medal .emo{font-size:36px}
+.footer{text-align:center;color:#607D86;padding:30px}@media(max-width:650px){h1{font-size:36px}header{min-height:74vh}.wrap{padding:12px}}
+@media print{nav,.toolbar button{display:none}body{background:white}.card{box-shadow:none;break-inside:avoid}header{min-height:auto;color:white;padding:24px;break-after:page}}
+
+/* Selector d'usuària */
+#userSelect{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0097A7,#6A4C93);display:flex;align-items:center;justify-content:center;padding:24px;color:white}
+#userSelect.hidden{display:none}
+.userBox{width:min(520px,100%);background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.38);border-radius:30px;padding:26px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.22);backdrop-filter:blur(8px)}
+.userBox h1{font-size:34px;line-height:1.05;margin:8px 0 10px}
+.userButtons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.userBtn{border:0;border-radius:24px;background:white;color:var(--deep);padding:22px 12px;font-size:22px;font-weight:950;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.userBtn span{display:block;font-size:42px;margin-bottom:6px}
+.currentUserPill{position:fixed;right:10px;bottom:10px;z-index:20;background:var(--deep);color:white;border-radius:999px;padding:8px 12px;font-weight:900;box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.currentUserPill button{margin-left:8px;background:white;color:var(--deep);padding:6px 10px;font-size:12px}
+@media(max-width:520px){.userButtons{grid-template-columns:1fr}.userBox h1{font-size:30px}}
+
+</style>
+<script>
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+</script>
+</head>
+<body>
+<div id="userSelect">
+  <div class="userBox">
+    <div style="font-size:54px">🌴📘</div>
+    <h1>Qui comença l'aventura?</h1>
+    <p>Escull el passaport. Cada usuària tindrà els seus reptes, records i medalles guardats per separat.</p>
+    <div class="userButtons">
+      <button class="userBtn" onclick="chooseUser('Laia')"><span>🌺</span>Laia</button>
+      <button class="userBtn" onclick="chooseUser('Gina')"><span>🐢</span>Gina</button>
+    </div>
+  </div>
+</div>
+<div class="currentUserPill" id="currentUserPill" style="display:none">
+  <span id="currentUserName"></span>
+  <button onclick="switchUser()">Canviar</button>
+</div>
+
+<header><div><div class="badges"><span class="badge">Família Font 2026</span><span class="badge">Malàisia · Singapur · Bali · Gili Air</span><span class="badge">Diari interactiu</span></div>
+<h1>🌴 Passaport<br>de les Aventureres</h1><p>Un quadern interactiu per marcar reptes, escriure records, posar estrelles, desbloquejar medalles i guardar l'aventura des del mòbil.</p></div>
+<div class="card" style="background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35);color:white"><label><b>Nom de l’aventurera</b></label><input data-save="nom" type="text" placeholder="Escriu el teu nom"><p><b>23 juliol - 13 agost 2026</b></p></div></header>
+<nav><a href="#perfil">Perfil</a><a href="#progres">Progrés</a><a href="#checklist">Checklist</a><a href="#medalles">Medalles</a><a href="#segells">Segells</a><a href="#jocs">Jocs</a><a href="#diari">Diari</a><a href="#final">Rànquing</a></nav>
+<main class="wrap">
+<section id="perfil"><h2>👧 El meu perfil d’aventurera</h2><div class="card">
+<label>El meu animal preferit abans de sortir:</label><input data-save="animal" type="text">
+<label>El que tinc més ganes de veure:</label><input data-save="ganes" type="text">
+<label>El menjar estrany que m’atreveixo a tastar:</label><input data-save="menjar" type="text">
+<label>La meva missió secreta del viatge:</label><input data-save="missio" type="text"></div></section>
+<section id="progres"><h2>📊 Progrés de l'aventura</h2><div class="card"><p><b>Reptes completats:</b> <span id="progressText">0%</span></p><div class="progress"><div class="bar" id="progressBar"></div></div></div></section>
+<section id="checklist"><h2>✅ Checklist d’aventureres</h2><div class="grid">
+<div class="card"><h3>🐢 Animals</h3><label class="check"><input class="challenge" data-save="chk_tortuga_perhentian" type="checkbox"><span>Veure una tortuga marina a Perhentian</span></label><label class="check"><input class="challenge" data-save="chk_tortuga_gili" type="checkbox"><span>Veure una tortuga a Gili Air</span></label><label class="check"><input class="challenge" data-save="chk_peix_colors" type="checkbox"><span>Veure un peix de colors que sembli de pel·lícula</span></label><label class="check"><input class="challenge" data-save="chk_micos" type="checkbox"><span>Veure micos a Batu Caves o Monkey Forest</span></label><label class="check"><input class="challenge" data-save="chk_animals10" type="checkbox"><span>Comptar 10 animals diferents durant el viatge</span></label><label class="check"><input class="challenge" data-save="chk_tauro" type="checkbox"><span>Veure un tauró de punta negra sense espantar-se</span></label></div><div class="card"><h3>📸 Fotos familiars</h3><label class="check"><input class="challenge" data-save="chk_foto_petronas" type="checkbox"><span>Foto familiar amb les Petronas</span></label><label class="check"><input class="challenge" data-save="chk_foto_batu" type="checkbox"><span>Foto a Batu Caves amb les escales de colors</span></label><label class="check"><input class="challenge" data-save="chk_foto_supertrees" type="checkbox"><span>Foto a Gardens by the Bay de nit</span></label><label class="check"><input class="challenge" data-save="chk_foto_cascada" type="checkbox"><span>Foto en una cascada de Bali</span></label><label class="check"><input class="challenge" data-save="chk_foto_gili" type="checkbox"><span>Foto a l’últim capvespre de Gili Air</span></label><label class="check"><input class="challenge" data-save="chk_foto_pais" type="checkbox"><span>Foto familiar a cada país</span></label></div><div class="card"><h3>🍜 Sabors nous</h3><label class="check"><input class="challenge" data-save="chk_menjar_malaisia" type="checkbox"><span>Tastar alguna cosa nova a Malàisia</span></label><label class="check"><input class="challenge" data-save="chk_hawker" type="checkbox"><span>Menjar en un hawker centre de Singapur</span></label><label class="check"><input class="challenge" data-save="chk_warung" type="checkbox"><span>Tastar un plat balinès en un warung</span></label><label class="check"><input class="challenge" data-save="chk_suc" type="checkbox"><span>Escollir el millor suc tropical del viatge</span></label><label class="check"><input class="challenge" data-save="chk_sopar" type="checkbox"><span>Valorar el millor sopar del viatge</span></label><label class="check"><input class="challenge" data-save="chk_fruita" type="checkbox"><span>Tastar una fruita nova</span></label></div><div class="card"><h3>🏆 Reptes per destinació</h3><label class="check"><input class="challenge" data-save="chk_petronas_sense_mapa" type="checkbox"><span>Trobar les Petronas sense mirar el mapa</span></label><label class="check"><input class="challenge" data-save="chk_tortuga_no_perseguir" type="checkbox"><span>Veure una tortuga sense perseguir-la</span></label><label class="check"><input class="challenge" data-save="chk_mrt_expertes" type="checkbox"><span>Entrar al MRT com unes expertes</span></label><label class="check"><input class="challenge" data-save="chk_merlion" type="checkbox"><span>Trobar el Merlion</span></label><label class="check"><input class="challenge" data-save="chk_cascada_bonica" type="checkbox"><span>Escollir la cascada més bonica de Bali</span></label><label class="check"><input class="challenge" data-save="chk_gili_bici" type="checkbox"><span>Fer la volta completa a Gili Air en bici</span></label><label class="check"><input class="challenge" data-save="chk_illa_sense_cotxes" type="checkbox"><span>Viure un dia sense cotxes ni presses</span></label><label class="check"><input class="challenge" data-save="chk_500_fotos" type="checkbox"><span>Tornar amb més de 500 fotos</span></label></div></div></section><section id="medalles"><h2>🏅 Medalles desbloquejables</h2><div class="medals"><div class="medal" id="med_tortuga"><div class="emo">🐢</div><h3>Medalla Tortuga</h3><p>Completa una tortuga de Perhentian o Gili</p></div><div class="medal" id="med_fotografa"><div class="emo">📸</div><h3>Fotògrafa Oficial</h3><p>Completa 4 reptes de fotos familiars</p></div><div class="medal" id="med_singapur"><div class="emo">✨</div><h3>Exploradora de Singapur</h3><p>Troba el Merlion i entra al MRT com experta</p></div><div class="medal" id="med_gili"><div class="emo">🚲</div><h3>Exploradora de Gili</h3><p>Volta en bici + tortuga a Gili</p></div><div class="medal" id="med_foodie"><div class="emo">🍜</div><h3>Foodie Aventurera</h3><p>Completa 4 reptes de sabors</p></div><div class="medal" id="med_super"><div class="emo">🏆</div><h3>Super Aventurera Font</h3><p>Completa almenys el 80% dels reptes</p></div></div></section><section id="segells"><h2>🛂 Segells d’aventura</h2><div class="stamps"><div class="stamp"><div class="emoji">🌃</div><b>Kuala Lumpur</b><input data-save="stamp0" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">🐢</div><b>Perhentian</b><input data-save="stamp1" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">✨</div><b>Singapur</b><input data-save="stamp2" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">🌴</div><b>Bali</b><input data-save="stamp3" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">🚲</div><b>Gili Air</b><input data-save="stamp4" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">✈️</div><b>Tornada a casa</b><input data-save="stamp5" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">🏆</div><b>Aventurera Pro</b><input data-save="stamp6" type="text" placeholder="Data / segell"></div><div class="stamp"><div class="emoji">📸</div><b>Fotògrafa oficial</b><input data-save="stamp7" type="text" placeholder="Data / segell"></div></div></section>
+<section id="jocs"><h2>🎲 Jocs familiars</h2><div class="card"><h3>El moment secret</h3><p>Abans de sortir al matí, cadascuna tria en secret què creu que serà el millor del dia. A la nit es compara amb el que realment ha passat.</p>
+<table class="table"><tr><th>Dia</th><th>La meva predicció</th><th>El que realment ha estat millor</th></tr><tr><td><b>KL</b></td><td><input data-save='pred_kl' type='text'></td><td><input data-save='real_kl' type='text'></td></tr><tr><td><b>Perhentian</b></td><td><input data-save='pred_perhentian' type='text'></td><td><input data-save='real_perhentian' type='text'></td></tr><tr><td><b>Singapur</b></td><td><input data-save='pred_singapur' type='text'></td><td><input data-save='real_singapur' type='text'></td></tr><tr><td><b>Bali</b></td><td><input data-save='pred_bali' type='text'></td><td><input data-save='real_bali' type='text'></td></tr><tr><td><b>Gili Air</b></td><td><input data-save='pred_giliair' type='text'></td><td><input data-save='real_giliair' type='text'></td></tr></table></div></section><section id="diari"><h2>📖 Diari de viatge</h2><div class="card day"><h3>24 JUL · Kuala Lumpur</h3><p><b>Pregunta:</b> Què va ser el primer que et va sorprendre en arribar a Àsia?</p>
+<label>El meu record:</label><textarea data-save="day_0_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_0_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_0_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>25 JUL · Batu Caves</h3><p><b>Pregunta:</b> Què et va agradar més: les escales, els micos o el temple?</p>
+<label>El meu record:</label><textarea data-save="day_1_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_1_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_1_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>26 JUL · Kuala Lumpur cultural</h3><p><b>Pregunta:</b> Dibuixa o descriu l'edifici més bonic del dia.</p>
+<label>El meu record:</label><textarea data-save="day_2_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_2_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_2_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>27 JUL · Dia comodí KL</h3><p><b>Pregunta:</b> Què compraries per recordar aquest viatge?</p>
+<label>El meu record:</label><textarea data-save="day_3_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_3_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_3_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>28 JUL · Arribada a Perhentian</h3><p><b>Pregunta:</b> Descriu el color del mar amb les teves paraules.</p>
+<label>El meu record:</label><textarea data-save="day_4_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_4_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_4_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>29 JUL · Dia tortuga</h3><p><b>Pregunta:</b> Qui va veure la primera tortuga?</p>
+<label>El meu record:</label><textarea data-save="day_5_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_5_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_5_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>30 JUL · Redang / snorkel</h3><p><b>Pregunta:</b> Quin va ser el peix més estrany o bonic?</p>
+<label>El meu record:</label><textarea data-save="day_6_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_6_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_6_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>31 JUL · Últim dia Perhentian</h3><p><b>Pregunta:</b> Quina va ser la platja guanyadora?</p>
+<label>El meu record:</label><textarea data-save="day_7_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_7_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_7_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>1 AGO · Arribada a Singapur</h3><p><b>Pregunta:</b> Què et va semblar l'aeroport o la ciutat de nit?</p>
+<label>El meu record:</label><textarea data-save="day_8_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_8_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_8_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>2 AGO · Gardens by the Bay</h3><p><b>Pregunta:</b> Valora Cloud Forest i l'espectacle dels Supertrees.</p>
+<label>El meu record:</label><textarea data-save="day_9_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_9_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_9_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>3 AGO · Singapur → Bali</h3><p><b>Pregunta:</b> Quin barri de Singapur et va agradar més?</p>
+<label>El meu record:</label><textarea data-save="day_10_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_10_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_10_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>4 AGO · Ubud</h3><p><b>Pregunta:</b> Quin mico va ser el més graciós?</p>
+<label>El meu record:</label><textarea data-save="day_11_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_11_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_11_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>5 AGO · Bali Est</h3><p><b>Pregunta:</b> Quin temple o paisatge et va impressionar més?</p>
+<label>El meu record:</label><textarea data-save="day_12_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_12_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_12_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>6 AGO · Cascades</h3><p><b>Pregunta:</b> Quina va ser la cascada guanyadora?</p>
+<label>El meu record:</label><textarea data-save="day_13_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_13_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_13_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>7 AGO · Nord de Bali</h3><p><b>Pregunta:</b> Què va ser més bonic: llac, cascada o temple?</p>
+<label>El meu record:</label><textarea data-save="day_14_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_14_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_14_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>8 AGO · Arribada a Gili</h3><p><b>Pregunta:</b> Com se sent una illa sense cotxes?</p>
+<label>El meu record:</label><textarea data-save="day_15_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_15_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_15_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>9 AGO · Snorkel Gili</h3><p><b>Pregunta:</b> Què vas veure sota l'aigua?</p>
+<label>El meu record:</label><textarea data-save="day_16_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_16_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_16_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>10 AGO · Relax a Gili</h3><p><b>Pregunta:</b> Quin va ser el teu moment preferit d'illa?</p>
+<label>El meu record:</label><textarea data-save="day_17_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_17_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_17_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>11 AGO · Gili → KL</h3><p><b>Pregunta:</b> Quin lloc et va fer més pena deixar?</p>
+<label>El meu record:</label><textarea data-save="day_18_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_18_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_18_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>12 AGO · Últim KL</h3><p><b>Pregunta:</b> Quin souvenir o record t'emportes?</p>
+<label>El meu record:</label><textarea data-save="day_19_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_19_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_19_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div><div class="card day"><h3>13 AGO · Casa</h3><p><b>Pregunta:</b> Resumeix el viatge en una frase.</p>
+<label>El meu record:</label><textarea data-save="day_20_record"></textarea>
+<label>El millor menjar / moment / foto:</label><input data-save="day_20_best" type="text">
+<p><b>Valoració del dia:</b></p><div class="starbox" data-starbox="day_20_stars"><span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span></div></div></section><section id="final"><h2>🏁 Rànquing final del viatge</h2><div class="card"><table class="table"><tr><th>Categoria</th><th>Guanyador</th><th>Per què</th></tr><tr><td><b>Millor platja</b></td><td><input data-save='rank_0_win' type='text'></td><td><input data-save='rank_0_why' type='text'></td></tr><tr><td><b>Millor animal</b></td><td><input data-save='rank_1_win' type='text'></td><td><input data-save='rank_1_why' type='text'></td></tr><tr><td><b>Millor menjar</b></td><td><input data-save='rank_2_win' type='text'></td><td><input data-save='rank_2_why' type='text'></td></tr><tr><td><b>Millor hotel</b></td><td><input data-save='rank_3_win' type='text'></td><td><input data-save='rank_3_why' type='text'></td></tr><tr><td><b>Millor ciutat</b></td><td><input data-save='rank_4_win' type='text'></td><td><input data-save='rank_4_why' type='text'></td></tr><tr><td><b>Moment més divertit</b></td><td><input data-save='rank_5_win' type='text'></td><td><input data-save='rank_5_why' type='text'></td></tr><tr><td><b>Moment més WOW</b></td><td><input data-save='rank_6_win' type='text'></td><td><input data-save='rank_6_why' type='text'></td></tr></table></div><div class="card"><h3>💌 Carta al meu jo del futur</h3><textarea data-save="carta" placeholder="Estimada jo del futur..."></textarea></div>
+<div class="toolbar"><button onclick="window.print()">Imprimir / guardar en PDF</button><button class="light" onclick="exportData()">Exportar records</button><button class="secondary" onclick="if(confirm('Segur que vols esborrar només les dades de '+currentUser+'?')){clearCurrentUserData();location.reload()}">Esborrar tot</button></div>
+<p class="small">El que escriguis queda guardat en aquest navegador del mòbil. Si canvies de mòbil o navegador, exporta els records abans.</p></section></main>
+<div class="footer">Passaport de les Aventureres · Família Font 2026</div>
+<script>
+let currentUser = localStorage.getItem('passaport_current_user') || '';
+function storageKey(key){ return currentUser ? ('passaport_'+currentUser+'_'+key) : key; }
+function chooseUser(name){
+  currentUser = name;
+  localStorage.setItem('passaport_current_user', name);
+  document.getElementById('userSelect').classList.add('hidden');
+  document.getElementById('currentUserPill').style.display='block';
+  document.getElementById('currentUserName').textContent='Passaport: '+name;
+  document.querySelectorAll('[data-save]').forEach(loadEl);
+  document.querySelectorAll('[data-starbox]').forEach(box=>{const saved=Number(localStorage.getItem(storageKey(box.dataset.starbox))||0);setStars(box,saved);});
+  updateProgress();
+}
+function switchUser(){
+  document.getElementById('userSelect').classList.remove('hidden');
+}
+function clearCurrentUserData(){
+  const prefix='passaport_'+currentUser+'_';
+  Object.keys(localStorage).filter(k=>k.startsWith(prefix)).forEach(k=>localStorage.removeItem(k));
+}
+window.addEventListener('load',()=>{ if(currentUser) chooseUser(currentUser); });
+
+const medals = [["med_tortuga", "🐢", "Medalla Tortuga", "Completa una tortuga de Perhentian o Gili", ["chk_tortuga_perhentian", "chk_tortuga_gili"]], ["med_fotografa", "📸", "Fotògrafa Oficial", "Completa 4 reptes de fotos familiars", ["chk_foto_petronas", "chk_foto_batu", "chk_foto_supertrees", "chk_foto_cascada", "chk_foto_gili", "chk_foto_pais"], 4], ["med_singapur", "✨", "Exploradora de Singapur", "Troba el Merlion i entra al MRT com experta", ["chk_merlion", "chk_mrt_expertes"]], ["med_gili", "🚲", "Exploradora de Gili", "Volta en bici + tortuga a Gili", ["chk_gili_bici", "chk_tortuga_gili"]], ["med_foodie", "🍜", "Foodie Aventurera", "Completa 4 reptes de sabors", ["chk_menjar_malaisia", "chk_hawker", "chk_warung", "chk_suc", "chk_sopar", "chk_fruita"], 4], ["med_super", "🏆", "Super Aventurera Font", "Completa almenys el 80% dels reptes", ["__progress80__"]]];
+function saveEl(el){const key=el.dataset.save;if(!key)return;if(el.type==='checkbox')localStorage.setItem(storageKey(key),el.checked?'1':'0');else localStorage.setItem(storageKey(key),el.value);updateProgress();}
+function loadEl(el){const key=el.dataset.save;if(!key)return;const val=localStorage.getItem(storageKey(key));if(val===null)return;if(el.type==='checkbox')el.checked=val==='1';else el.value=val;}
+document.querySelectorAll('[data-save]').forEach(el=>{loadEl(el);el.addEventListener('input',()=>saveEl(el));el.addEventListener('change',()=>saveEl(el));});
+function setStars(box,n){box.querySelectorAll('.star').forEach(s=>s.classList.toggle('active',Number(s.dataset.v)<=n));}
+document.querySelectorAll('[data-starbox]').forEach(box=>{const key=box.dataset.starbox;const saved=Number(localStorage.getItem(storageKey(key))||0);setStars(box,saved);box.querySelectorAll('.star').forEach(star=>{star.addEventListener('click',()=>{const v=Number(star.dataset.v);localStorage.setItem(storageKey(key),v);setStars(box,v);});});});
+function updateProgress(){
+ const challenges=[...document.querySelectorAll('.challenge')]; const done=challenges.filter(x=>x.checked).length; const pct=challenges.length?Math.round(done/challenges.length*100):0;
+ document.getElementById('progressText').textContent=pct+'% ('+done+'/'+challenges.length+')'; document.getElementById('progressBar').style.width=pct+'%';
+ medals.forEach(m=>{const id=m[0], req=m[4], min=m[5]||req.length; let ok=false;
+   if(req.includes('__progress80__')) ok=pct>=80; else ok=req.filter(k=>localStorage.getItem(storageKey(k))==='1').length>=min;
+   const el=document.getElementById(id); if(el) el.classList.toggle('unlocked',ok);
+ });
+}
+function exportData(){let data={usuaria:currentUser};const prefix='passaport_'+currentUser+'_';for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith(prefix)){data[k.replace(prefix,'')]=localStorage.getItem(k);}}const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='records_passaport_'+currentUser+'_2026.json';a.click();URL.revokeObjectURL(url);}
+updateProgress();
+</script></body></html>
